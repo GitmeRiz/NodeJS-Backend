@@ -9,9 +9,6 @@ import {
     updateProducts,
     deleteProducts,
 
-    getKeranjang,
-    saveKeranjang,
-    
     getfeedback,
     saveFeedback
 } from "../controller/ProductController.js"
@@ -24,11 +21,8 @@ router.post('/bestproduct', saveBestProduct)
 router.get('/products', getProducts)
 router.get('/products/:id', getProductsById)
 router.post('/products', saveProducts)
-router.patch('/products', updateProducts)
-router.delete('/products', deleteProducts)
-
-router.get('/keranjang', getKeranjang)
-router.post('/keranjang', saveKeranjang)
+router.patch('/products/:id', updateProducts)
+router.delete('/products/:id', deleteProducts)
 
 router.get('/feedback', getfeedback)
 router.post('/feedback', saveFeedback)
