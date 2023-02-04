@@ -1,6 +1,7 @@
 import Product from "../models/ProductsModel.js";
 import Feedback from "../models/FeedbackModel.js";
 import BestProduct from "../models/BestProductModel.js";
+import Order from "../models/OrderModel.js";
 import path from "path";
 import fs from "fs";
 
@@ -64,6 +65,21 @@ export const getProductsById = async (req, res) => {
         res.json(response);
     } catch (error) {
         console.log(error.message);
+    }
+}
+
+export const getProductsByName = async (req, res) => {
+    try {
+        const response = await Product.findAll({
+            where: {
+              name: {
+                [Sequelize.Op.like]: `%${req.query.name}%`
+              }
+            }
+          });
+          res.json(response);      
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -184,3 +200,28 @@ export const saveFeedback = async (req, res) => {
     }
 }
 // ----------------------------------------------------Feddback----------------------------------------------------
+
+
+
+
+// ----------------------------------------------------Order----------------------------------------------------
+export const getOrder = async (req, res) => {
+    try {
+        const response = await Order.findAll();
+        res.json(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const saveOrder = async (req, res) => {
+    const jumlahpesan = req.body.jumlahpesan;
+    const keterangan = req.body.keterangan;
+    try {
+        await Order.create({ jumlahpesan: jumlahpesan, keterangan: keterangan });
+        res.status(201).json({ msg: "Order Created Successfuly" });
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+// ----------------------------------------------------Order----------------------------------------------------
