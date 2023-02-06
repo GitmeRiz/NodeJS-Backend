@@ -5,7 +5,6 @@ import {
 
     getProducts,
     getProductsById,
-    getProductsByName,
     saveProducts,
     updateProducts,
     deleteProducts,
@@ -24,7 +23,6 @@ router.post('/bestproduct', saveBestProduct)
 
 router.get('/products', getProducts)
 router.get('/products/:id', getProductsById)
-router.get('/products/:name', getProductsByName)
 router.post('/products', saveProducts)
 router.patch('/products/:id', updateProducts)
 router.delete('/products/:id', deleteProducts)

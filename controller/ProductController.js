@@ -5,8 +5,6 @@ import Order from "../models/OrderModel.js";
 import path from "path";
 import fs from "fs";
 
-// let bodyParser = require('body-parser')
-
 // ----------------------------------------------------BestProduct----------------------------------------------------
 export const getbestProducts = async (req, res) => {
     try {
@@ -68,20 +66,6 @@ export const getProductsById = async (req, res) => {
     }
 }
 
-export const getProductsByName = async (req, res) => {
-    try {
-        const response = await Product.findAll({
-            where: {
-              name: {
-                [Sequelize.Op.like]: `%${req.query.name}%`
-              }
-            }
-          });
-          res.json(response);      
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 export const saveProducts = (req, res)=>{
     if(req.files === null) return res.status(400).json({msg: "No File Uploaded"});
